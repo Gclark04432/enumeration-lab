@@ -22,4 +22,13 @@ class StarSystem
     @planets.min_by { |planet| planet.diameter}
   end
 
+  def get_planets_with_no_moons()
+    @planets.select { |planet| planet.number_of_moons == 0 }
+  end
+
+  def get_planets_with_more_moons(moons)
+    valid_planets = @planets.find_all { |planet| planet.number_of_moons > moons}
+    valid_planets.map { |planet| planet.name }
+  end
+
 end
