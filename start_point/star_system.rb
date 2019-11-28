@@ -6,8 +6,8 @@ class StarSystem
     @planets = planets
   end
 
-  def planet_names
-    @planets.map { |planet| planet.name()}
+  def planet_names(planets = @planets)
+    planets.map { |planet| planet.name()}
   end
 
   def get_planet_by_name(planet_name)
@@ -28,7 +28,7 @@ class StarSystem
 
   def get_planets_with_more_moons(moons)
     valid_planets = @planets.find_all { |planet| planet.number_of_moons > moons}
-    valid_planets.map { |planet| planet.name }
+    planet_names(valid_planets)
   end
 
   def get_number_of_planets_closer_than(distance)
@@ -43,13 +43,12 @@ class StarSystem
 
   def get_planet_names_sorted_by_increasing_distance_from_sun
     planets_in_order = @planets.sort_by { |planet| planet.distance_from_sun}
-    planets_in_order.map { |planet| planet.name}
+    planet_names(planets_in_order)
   end
 
   def get_planet_names_sorted_by_size_decreasing
-    planets_in_order = @planets.sort_by { |planet| planet.diameter}
-    planets_in_order.reverse!
-    planets_in_order.map { |planet| planet.name}
+    planets_in_order = @planets.sort_by { |planet| -planet.diameter}
+    planet_names(planets_in_order)
   end
 
 end
