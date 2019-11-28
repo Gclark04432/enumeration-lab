@@ -31,4 +31,9 @@ class StarSystem
     valid_planets.map { |planet| planet.name }
   end
 
+  def get_number_of_planets_closer_than(distance)
+    valid_planets = @planets.select { |planet| planet.distance_from_sun < distance}
+    return valid_planets.length
+  end
+
 end
